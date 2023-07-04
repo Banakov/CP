@@ -1,0 +1,66 @@
+/newbot
+/setuserpic
+
+
+openapi: 3.0.0
+info:
+  title: for-serverless-hello-telegram-bot
+  version: 1.0.0
+paths:
+  /sayhello.png:
+    get:
+      x-yc-apigateway-integration:
+        type: object_storage
+        bucket: <имя бакета>
+        object: sayhello.png
+        presigned_redirect: false
+        service_account_id: <идентификатор сервисного аккаунта>
+      operationId: static
+
+openapi: 3.0.0
+info:
+  title: for-serverless-hello-telegram-bot
+  version: 1.0.0
+paths:
+  /sayhello.png:
+    get:
+      x-yc-apigateway-integration:
+        type: object_storage
+        bucket: <имя бакета>
+        object: sayhello.png
+        presigned_redirect: false
+        service_account_id: <идентификатор сервисного аккаунта>
+      operationId: static
+
+{
+  "name": "ycf-telegram-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^3.38.0"
+  }
+}
+
+
+  /fshtb-function:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: <идентификатор функции>
+      operationId: fshtb-function
+
+curl ^
+  --request POST ^
+  --url https://api.telegram.org/bot<токен бота>/setWebhook ^
+  --header "content-type: application/json" ^
+  --data "{\"url\": \"<домен API-шлюза>/fshtb-function\"}"
+
+Результат:
+
+{"ok":true,"result":true,"description":"Webhook was set"}
